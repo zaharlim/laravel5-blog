@@ -55,6 +55,8 @@ class PostsController extends Controller
      */
     public function show($id)
     {
+        
+
         $post=\App\Post::find($id);
          return view('posts.show', compact('post'));
     }
@@ -67,7 +69,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post=\App\Post::find($id);
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -79,7 +82,15 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    	$this->validate($request, [
+    		'title' => 'required|max:100',
+    		'content' => 'required',
+    		'category_id' => 'required',
+	]);
+
+       $post = \App\Post::find($id);
+       $post->update($request->all());
+       return redirect()->route('posts.index');
     }
 
     /**
@@ -90,6 +101,8 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = \App\Post::find($id);
+        $post->delete();
+        return redirect()->route('posts.index');
     }
 }
