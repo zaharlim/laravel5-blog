@@ -1,11 +1,17 @@
-@extends('master')
+@extends ('master')
 
-@section('content')
-	{!! Form::model($post, array('route' => array('posts.update', $post->id),'method'=>'put')) !!}
-	@include('errors._validation')
-<legend>Edit Post</legend>
+@section ('content')
+
+{!! Form::model($post,array('route' => array('posts.update', $post->id), 'method' => 'put')) !!}
+
+@include('errors._validation')
+
+<legend class="title">Edit Post</legend>
+
 @include('posts._form')
-	{!! Form::submit('Update', ['class'=>'btn btn-success']) !!}    
-}
+
+{!! Form::submit('Update', ['class' => 'btn btn-primary'])!!}
+
 {!! Form::close() !!}
+
 @stop
