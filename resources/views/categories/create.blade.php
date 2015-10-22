@@ -1,11 +1,17 @@
-@extends('master')
+@extends ('master')
 
-@section('content')
-{!! Form::open(['route'=>'categories.store']) !!}
+@section ('content')
+
+{!! Form::open(array('route' => 'categories.store')) !!}
 
 @include('errors._validation')
-<legend>New Category</legend>
+
+<legend class="title">New Category</legend>
+
 @include('categories._form')
-	{!! Form::submit('Save', ['class'=>'btn btn-success']) !!}    
+
+{!! Form::submit('Submit', ['class' => 'btn btn-primary'])!!}
+
 {!! Form::close() !!}
+
 @stop

@@ -37,7 +37,12 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $this->validate($request, ['title' => 'required']);
+
+        \App\Category::create($request->all());
+        
+        return redirect()->route('categories.index');
+
     }
 
     /**
@@ -48,7 +53,7 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-       $category=\App\Post::find($id);
+       $category=\App\Category::find($id);
          return view('categories.show', compact('category'));  
     }
 
@@ -60,7 +65,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+         $category=\App\Category::find($id);
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -72,7 +78,11 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, ['title' => 'required']);
         //
+        $category = \App\Category::find($id);
+        $category->update($request->all());
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -83,6 +93,10 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = \App\Category::find($id);
+
+        $category->delete();
+
+        return redirect()->route('categories.index');
     }
 }
