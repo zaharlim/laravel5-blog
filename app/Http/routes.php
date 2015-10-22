@@ -49,6 +49,6 @@ Route::post('login-submit', function() {
 
 });
 
-Route::get('posts', 'PostsController@index');
+Route::resource('posts', 'PostsController');
 
-Route::get('posts/{id}', 'PostsController@show');
+//Route::get('posts/{id}', 'PostsController@show');
