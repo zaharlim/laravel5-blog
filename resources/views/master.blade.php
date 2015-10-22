@@ -22,5 +22,6 @@
    @include('_navigation')
    @yield('content')
     </div>
+    <script src="{{ asset('js/all.js')}}"></script>
   </body>
 </html>
